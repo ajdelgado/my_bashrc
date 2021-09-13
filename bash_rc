@@ -1,0 +1,42 @@
+#!/bin/bash
+# .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	# shellcheck disable=SC1091
+	. /etc/bashrc
+fi
+
+# Uncomment the following line if you don't like systemctl's auto-paging feature:
+# export SYSTEMD_PAGER=
+
+export PATH="${PATH}:${HOME}/bin:/usr/local/bin:/usr/local/sbin"
+
+export EDITOR=nano
+
+# My PS1 customization
+mkdir -p "${HOME}/src"
+if [ ! -d "${HOME}/src/bash_prompt" ]; then
+	git clone git@github.com:ajdelgado/bash_prompt.git --depth 1 "${HOME}/src/bash_prompt"
+	cp "${HOME}/src/bash_prompt/bashrc_ps1.sh" "${HOME}/.bashrc_ps1" -rfp
+fi
+# shellcheck disable=SC1091
+source "${HOME}/.bashrc_ps1"
+
+# Format history records
+export HISTTIMEFORMAT="[%s] "
+# Append to history file and share between shells
+PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+# Don't overwrite it history
+shopt -s histappend
+# Unlimited history
+export HISTFILESIZE=
+export HISTSIZE=
+
+# Set other bashrc files
+mkdir -p "${HOME}/.bashrc.d"
+while read -r bashrc_file
+do
+	# shellcheck disable=SC1090
+	source "${bashrc_file}"
+done <<< "$(find "${HOME}/.bashrc.d" -type f)"
