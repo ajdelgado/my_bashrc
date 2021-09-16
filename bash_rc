@@ -23,7 +23,7 @@ export EDITOR=nano
 # My PS1 customization
 mkdir -p "${HOME}/src"
 if [ ! -d "${HOME}/src/bash_prompt" ]; then
-	git clone https://github.com/ajdelgado/my_bashrc.git --depth 1 "${HOME}/src/bash_prompt"
+	git clone https://github.com/ajdelgado/bash_prompt.git --depth 1 "${HOME}/src/bash_prompt"
 	cp "${HOME}/src/bash_prompt/bashrc_ps1.sh" "${HOME}/.bashrc_ps1" -rfp
 fi
 # shellcheck disable=SC1091
