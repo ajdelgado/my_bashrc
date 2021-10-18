@@ -31,8 +31,10 @@ source "${HOME}/.bashrc_ps1"
 
 # Format history records
 export HISTTIMEFORMAT="[%s] "
-# Append to history file and share between shells
-PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+# Append to history file
+#PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
+# Share between shells
+PROMPT_COMMAND="history -c; history -r; $PROMPT_COMMAND"
 # Don't overwrite it history
 shopt -s histappend
 # Unlimited history
