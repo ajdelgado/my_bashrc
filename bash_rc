@@ -31,11 +31,14 @@ source "${HOME}/.bashrc_ps1"
 
 # Format history records
 export HISTTIMEFORMAT="[%s] "
+
 # Append to history file
-PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
+#PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
+
 # Share between shells
-PROMPT_COMMAND="history -c; history -r; $PROMPT_COMMAND"
-# Don't overwrite it history
+#PROMPT_COMMAND="history -c; history -r; $PROMPT_COMMAND"
+
+# append to the history file, don't overwrite it
 shopt -s histappend
 # Unlimited history
 export HISTFILESIZE=
