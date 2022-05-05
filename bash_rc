@@ -32,7 +32,7 @@ source "${HOME}/.bashrc_ps1"
 # Format history records
 export HISTTIMEFORMAT="[%s] "
 # Append to history file
-#PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
+PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 # Share between shells
 PROMPT_COMMAND="history -c; history -r; $PROMPT_COMMAND"
 # Don't overwrite it history
@@ -115,12 +115,10 @@ export SCREENDIR="${HOME}/.screen"
 
 # Set other bashrc files
 mkdir -p "${HOME}/.bashrc.d"
-while read -r bashrc_file
+for bashrc_file in $(find "${HOME}/.bashrc.d" -type f | sort | grep -v ~$)
 do
-  if [ -z "${bashrc_file}" ]; then
+  if [ -n "${bashrc_file}" ]; then
     # shellcheck disable=SC1090
     source "${bashrc_file}"
   fi
-done <<< "$(find "${HOME}/.bashrc.d" -type f | sort | grep -v ~$)"
-
-#[ -z "$TMUX"  ] && { tmux attach || exec tmux new-session && exit;}
+done
