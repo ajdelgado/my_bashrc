@@ -7,4 +7,5 @@ if [ -e "${HOME}/.bashrc" ]; then
 fi
 cd "${my_dir}" ||exit 1
 cp bash_rc "${HOME}/.bashrc" -rfp
+mkdir -p "${HOME}/.bashrc.d/"
 cp bashrc.d/* "${HOME}/.bashrc.d/" -rfp
