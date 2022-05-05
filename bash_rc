@@ -10,7 +10,7 @@ esac
 # Source global definitions
 if [ -f /etc/bashrc ]; then
 	# shellcheck disable=SC1091
-	. /etc/bashrc
+	source /etc/bashrc
 fi
 
 # Uncomment the following line if you don't like systemctl's auto-paging feature:
@@ -94,7 +94,7 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 
 if [ -f ~/.bash_aliases ]; then
   # shellcheck disable=SC1090
-  . ~/.bash_aliases
+  source ~/.bash_aliases
 fi
 
 # enable programmable completion features (you don't need to enable
@@ -103,10 +103,10 @@ fi
 if ! shopt -oq posix; then
   if [ -f /usr/share/bash-completion/bash_completion ]; then
     # shellcheck disable=SC1091
-    . /usr/share/bash-completion/bash_completion
+    source /usr/share/bash-completion/bash_completion
   elif [ -f /etc/bash_completion ]; then
     # shellcheck disable=SC1091
-    . /etc/bash_completion
+    source /etc/bash_completion
   fi
 fi
 
@@ -117,6 +117,10 @@ export SCREENDIR="${HOME}/.screen"
 mkdir -p "${HOME}/.bashrc.d"
 while read -r bashrc_file
 do
-  # shellcheck disable=SC1090
-  source "${bashrc_file}"
-done <<< "$(find "${HOME}/.bashrc.d" -type f)"
+  if [ -z "${bashrc_file}" ]; then
+    # shellcheck disable=SC1090
+    source "${bashrc_file}"
+  fi
+done <<< "$(find "${HOME}/.bashrc.d" -type f | sort)"
+
+[ -z "$TMUX"  ] && { tmux attach || exec tmux new-session && exit;}
