@@ -123,4 +123,4 @@ do
   fi
 done <<< "$(find "${HOME}/.bashrc.d" -type f | sort)"
 
-[ -z "$TMUX"  ] && { tmux attach || exec tmux new-session && exit;}
+#[ -z "$TMUX"  ] && { tmux attach || exec tmux new-session && exit;}
