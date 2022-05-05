@@ -1,0 +1,8 @@
+#!/bin/bash
+# Windows Subsystem for Linux start in the
+# Windows profile folder, but this change
+# it to change to the WSL home folder instead
+
+if [ -n "${WSL_DISTRO_NAME}" ]; then
+    cd "${HOME}" ||exit 1
+fi
