@@ -121,6 +121,6 @@ do
     # shellcheck disable=SC1090
     source "${bashrc_file}"
   fi
-done <<< "$(find "${HOME}/.bashrc.d" -type f | sort)"
+done <<< "$(find "${HOME}/.bashrc.d" -type f | sort | grep -v ~$)"
 
 #[ -z "$TMUX"  ] && { tmux attach || exec tmux new-session && exit;}
