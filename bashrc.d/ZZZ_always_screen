@@ -4,6 +4,11 @@
 if [ -n "$(which screen)" ]; then
     if [ -n "${STY}" ]; then
         echo "This is screen session '${STY//[0-9]*\./}'"
+        if [ -n "$(which xtitle)" ]; then
+            xtitle "${session_name}"
+        else
+            echo "xtitle is not installed so I can't update the title of the X window with the session name. Install it and the experience will be better)"
+        fi
     else
         echo "This is not a screen session, let's create one. Name of the session?"
         read -r session_name
