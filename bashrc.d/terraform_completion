@@ -1,2 +1,4 @@
 #!/bin/bash
-complete -C /usr/bin/terraform terraform
+if [ -x /usr/bin/terraform ]; then
+    complete -C /usr/bin/terraform terraform
+fi

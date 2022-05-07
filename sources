@@ -1,0 +1,5 @@
+# Add (or remove) sources repositories
+# The repository will be cloned to ~/src and
+# if there is an install.sh script in the root
+# of the repository, it will be run (so be careful)
+https://github.com/ajdelgado/bash_prompt.git
