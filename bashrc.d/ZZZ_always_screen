@@ -5,7 +5,7 @@ if [ -n "$(which screen)" ]; then
     if [ -n "${STY}" ]; then
         echo "This is screen session '${STY//[0-9]*\./}'"
         if [ -n "$(which xtitle)" ]; then
-            xtitle "${session_name}"
+            "$(which xtitle)" "${session_name}"
         else
             echo "xtitle is not installed so I can't update the title of the X window with the session name. Install it and the experience will be better)"
         fi
@@ -14,11 +14,11 @@ if [ -n "$(which screen)" ]; then
         read -r session_name
         if [ -n "${session_name}" ] && [ "${session_name}" != "" ]; then
             if [ -n "$(which xtitle)" ]; then
-                xtitle "${session_name}"
+                "$(which xtitle)" "${session_name}"
             else
                 echo "xtitle is not installed so I can't update the title of the X window with the session name. Install it and the experience will be better)"
             fi
-            screen -t "${session_name}" -S "${session_name}" && exit
+            "$(which screen)" -t "${session_name}" -S "${session_name}" && exit
         else
             echo "Ok, I'll leave you alone without a session..."
         fi
