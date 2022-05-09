@@ -1,5 +1,5 @@
 #!/bin/bash
-xtitle_cmd="$(which screen)"
+xtitle_cmd="$(which xtitle)"
 if [ -n "${xtitle_cmd}" ]; then
     "${xtitle_cmd}" "${USER}@$(hostname -s)"
 fi
