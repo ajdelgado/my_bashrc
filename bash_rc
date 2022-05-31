@@ -27,7 +27,7 @@ if [ ! -d "${HOME}/src/bash_prompt" ]; then
 	cp "${HOME}/src/bash_prompt/bashrc_ps1.sh" "${HOME}/.bashrc_ps1" -rfp
 fi
 # shellcheck disable=SC1091
-source "${HOME}/.bashrc_ps1"
+# source "${HOME}/.bashrc_ps1"
 
 # Format history records
 export HISTTIMEFORMAT="[%s] "
