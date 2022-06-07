@@ -3,7 +3,8 @@
 
 if [ -n "$(which screen)" ]; then
     if [ -n "${STY}" ]; then
-        echo "This is screen session '${STY//[0-9]*\./}'"
+        session_name="${STY//[0-9]*\./}"
+        echo "This is screen session '${session_name}'"
         if [ -n "$(which xtitle)" ]; then
             "$(which xtitle)" "${session_name}"
         else
