@@ -1,2 +1,2 @@
 #!/bin/bash
-alias dff='df -h | grep -v snap |grep -v tmpfs'
+alias dff='df -h | grep -v snap |grep -v tmpfs | grep -v btfs'
