@@ -1,0 +1,12 @@
+#!/bin/bash
+function venv() {
+    if [ ${#} -gt 0 ]; then
+        new_venv=${1}
+    else
+        echo "Name of the Python virtual environment:"
+        read -r new_venv
+    fi
+    mkdir -p "${HOME}/pyenvs/${new_venv}"
+    python -m venv "${HOME}/pyenvs/${new_venv}"
+    source "${HOME}/pyenvs/${new_venv}/bin/activate"
+}
