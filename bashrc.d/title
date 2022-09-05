@@ -1,5 +1,9 @@
 #!/bin/bash
-xtitle_cmd="$(which xtitle)"
-if [ -n "${xtitle_cmd}" ]; then
-    "${xtitle_cmd}" -q "${USER}@$(hostname -s)"
+if [ -z "${STY}" ]; then
+    xtitle_cmd="$(which xtitle)"
+    if [ -n "${xtitle_cmd}" ]; then
+        new_title="${USER}@$(hostname -s)"
+        echo "Setting title to ${new_title}"
+        "${xtitle_cmd}" -q "${USER}@$(hostname -s)"
+    fi
 fi
