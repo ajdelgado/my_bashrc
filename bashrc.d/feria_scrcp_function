@@ -4,3 +4,9 @@ function feria_scrcpy() {
     feria_ip=$(arp -an | grep "${feria_mac}" | awk '{print($2)}' | sed 's/[\)\(]//g')
     adb connect "${feria_ip}:5555" && scrcpy "--tcpip=${feria_ip}:5555"
 }
+
+function afuf_scrcpy() {
+    afuf_mac='b0:6e:bf:1c:c9:24'
+    afuf_ip=$(arp -an | grep "${afuf_mac}" | awk '{print($2)}' | sed 's/[\)\(]//g')
+    adb connect "${afuf_ip}:5555" && scrcpy "--tcpip=${afuf_ip}:5555"
+}
