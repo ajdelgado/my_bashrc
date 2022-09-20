@@ -8,7 +8,7 @@ if [ -n "${screen_cmd}" ]; then
         echo "This is screen session '${session_name}'"
         xtitle_cmd="$(which xtitle)"
         if [ -n ${xtitle_cmd} ]; then
-            "${xtitle_cmd}" -q "${session_name}"
+            "${xtitle_cmd}" -q -t "${session_name}"
             return_code=$?
             if [ ${return_code} != 0 ]; then
                 echo "There was an error ${return_code} setting the title."
@@ -21,7 +21,7 @@ if [ -n "${screen_cmd}" ]; then
         read -r session_name
         if [ -n "${session_name}" ] && [ "${session_name}" != "" ]; then
             if [ -n ${xtitle_cmd} ]; then
-                "${xtitle_cmd}" -q "${session_name}"
+                "${xtitle_cmd}" -q -t "${session_name}"
             else
                 echo "xtitle is not installed so I can't update the title of the X window with the session name. Install it and the experience will be better)"
             fi
