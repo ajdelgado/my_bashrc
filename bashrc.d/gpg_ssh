@@ -1,5 +1,5 @@
 #!/bin/bash
 # GPG and SSH
-SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-export SSH_AUTH_SOCK
-gpgconf --launch gpg-agent
+# SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+# export SSH_AUTH_SOCK
+# gpgconf --launch gpg-agent
