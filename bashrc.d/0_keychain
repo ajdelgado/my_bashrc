@@ -1,6 +1,6 @@
 #!/bin/bash
-if [ "$(which keychain)" == "" ]; then
-    echo "Install keychain package to get better key management"
-else
-    eval $(keychain --quiet --eval --agents ssh,gpg id_rsa)
-fi
+# if [ "$(which keychain)" == "" ]; then
+#     echo "Install keychain package to get better key management"
+# else
+#     eval $(keychain --quiet --eval --agents ssh,gpg id_rsa)
+# fi
