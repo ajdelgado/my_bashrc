@@ -1,35 +1,36 @@
 #!/bin/bash
 # Create a Screen session everytime, unless you don't want
-
-screen_cmd=$(which screen)
-if [ -n "${screen_cmd}" ]; then
-    if [ -n "${STY}" ]; then
-        session_name="${STY//[0-9]*\./}"
-        echo "This is screen session '${session_name}'"
-        xtitle_cmd="$(which xtitle)"
-        if [ -n ${xtitle_cmd} ]; then
-            "${xtitle_cmd}" -q -t "${session_name}"
-            return_code=$?
-            if [ ${return_code} != 0 ]; then
-                echo "There was an error ${return_code} setting the title."
-            fi
-        else
-            echo "xtitle is not installed so I can't update the title of the X window with the session name. Install it and the experience will be better)"
-        fi
-    else
-        echo "This is not a screen session, let's create one. Name of the session?"
-        read -r session_name
-        if [ -n "${session_name}" ] && [ "${session_name}" != "" ]; then
+if [ -e ~/.always_screen ]; then
+    screen_cmd=$(which screen)
+    if [ -n "${screen_cmd}" ]; then
+        if [ -n "${STY}" ]; then
+            session_name="${STY//[0-9]*\./}"
+            echo "This is screen session '${session_name}'"
+            xtitle_cmd="$(which xtitle)"
             if [ -n ${xtitle_cmd} ]; then
                 "${xtitle_cmd}" -q -t "${session_name}"
+                return_code=$?
+                if [ ${return_code} != 0 ]; then
+                    echo "There was an error ${return_code} setting the title."
+                fi
             else
                 echo "xtitle is not installed so I can't update the title of the X window with the session name. Install it and the experience will be better)"
             fi
-            "${screen_cmd}" -t "${session_name}" -S "${session_name}" && exit
         else
-            echo "Ok, I'll leave you alone without a session..."
+            echo "This is not a screen session, let's create one. Name of the session?"
+            read -r session_name
+            if [ -n "${session_name}" ] && [ "${session_name}" != "" ]; then
+                if [ -n ${xtitle_cmd} ]; then
+                    "${xtitle_cmd}" -q -t "${session_name}"
+                else
+                    echo "xtitle is not installed so I can't update the title of the X window with the session name. Install it and the experience will be better)"
+                fi
+                "${screen_cmd}" -t "${session_name}" -S "${session_name}" && exit
+            else
+                echo "Ok, I'll leave you alone without a session..."
+            fi
         fi
+    else
+        echo "Screen is not installed. Install it so always_screen in your bashrc will work."
     fi
-else
-    echo "Screen is not installed. Install it so always_screen in your bashrc will work."
 fi
