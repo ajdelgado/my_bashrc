@@ -1,2 +1,0 @@
-#!/bin/bash
-alias ldap_search='ldapsearch -z 0 -t -x -w "$(pass show Imp_2023-03-10/Koti.site/omapilvi.koti.site | head -n 1)" -LLL -H ldap://ldap.koti.site:389 -b dc=koti,dc=site -D "uid=${USER},ou=People,ou=Users,dc=koti,dc=site"'
