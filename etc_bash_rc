@@ -1,0 +1,10 @@
+#!/bin/bash
+# Set other bashrc files
+mkdir -p "/etc/bashrc.d"
+for bashrc_file in $(find /etc/bashrc.d -type f | sort | grep -v ~$)
+do
+  if [ -n "${bashrc_file}" ]; then
+    # shellcheck disable=SC1090
+    source "${bashrc_file}"
+  fi
+done
