@@ -1,0 +1,8 @@
+#!/bin/bash
+function tgrep() {
+    if [ ${#} -ne 2 ]; then
+        echo "First argument is a file, second argument a regexp to filter it while tailing"
+        exit 1
+    fi
+    tail -f "${1}" | grep -E "${2}"
+}
