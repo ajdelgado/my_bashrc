@@ -1,0 +1,23 @@
+#!/bin/bash
+export ANSIBLE_STDOUT_CALLBACK=yaml
+# alias my_ansible="source ~/pyenvs/my_ansible/bin/activate; cd ${HOME}/Projects/ansible_code"
+function my_ansible () {
+  source ~/pyenvs/my_ansible/bin/activate
+  prev_dir=$(pwd)
+  if cd ${HOME}/Projects/ansible_code; then
+    ansible ${*}
+    cd "${prev_dir}"
+  else;
+    echo "Not found ansible code folder"
+  fi
+}
+function my_ansible-playbook () {
+  source ~/pyenvs/my_ansible/bin/activate
+  prev_dir=$(pwd)
+  if cd ${HOME}/Projects/ansible_code; then
+    ansible-playbook ${*}
+    cd "${prev_dir}"
+  else;
+    echo "Not found ansible code folder"
+  fi
+}
