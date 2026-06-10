@@ -11,6 +11,7 @@ function my_ansible () {
   else
     echo "Not found ansible code folder"
   fi
+  deactivate
 }
 function my_ansible-playbook () {
   # shellcheck disable=SC1090
@@ -22,4 +23,5 @@ function my_ansible-playbook () {
   else
     echo "Not found ansible code folder"
   fi
+  deactivate
 }
